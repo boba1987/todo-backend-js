@@ -34,7 +34,7 @@ module.exports = function (app) {
 
     todo.belongsTo(models.users, {
       foreignKey: {
-        name: 'id'
+        name: 'userId'
       }
     });
   };
