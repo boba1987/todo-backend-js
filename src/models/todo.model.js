@@ -5,9 +5,23 @@ const Sequelize = require('sequelize');
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const todo = sequelizeClient.define('todo', {
-    done: Sequelize.DataTypes.BOOLEAN,
-    title: Sequelize.DataTypes.STRING,
-    description: Sequelize.DataTypes.STRING,
+    id: {
+      type: Sequelize.DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true 
+    },
+    done: {
+      type: Sequelize.DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    title: {
+      type: Sequelize.DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: Sequelize.DataTypes.STRING,
+      defaultValue: ''
+    },
     userId: {
       type: Sequelize.DataTypes.INTEGER,
       references: {
@@ -18,7 +32,15 @@ module.exports = function (app) {
         key: 'id'
       },
       allowNull: false
-    }
+    },
+    createdAt: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW
+    },
+    updatedAt: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW
+    },
   }, {
     hooks: {
       beforeCount(options) {
