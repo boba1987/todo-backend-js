@@ -1,13 +1,22 @@
 // See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
 const Sequelize = require('sequelize');
-const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const todo = sequelizeClient.define('todo', {
-    text: {
-      type: DataTypes.STRING,
+    done: Sequelize.DataTypes.BOOLEAN,
+    title: Sequelize.DataTypes.STRING,
+    description: Sequelize.DataTypes.STRING,
+    userId: {
+      type: Sequelize.DataTypes.INTEGER,
+      references: {
+        model: {
+          tableName: 'users',
+          schema: 'public'
+        },
+        key: 'id'
+      },
       allowNull: false
     }
   }, {
