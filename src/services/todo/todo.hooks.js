@@ -27,7 +27,11 @@ module.exports = {
   },
 
   after: {
-    all: [],
+    all: [
+      context => {
+        delete context.result.userId;
+      }
+    ],
     find: [],
     get: [],
     create: [],
