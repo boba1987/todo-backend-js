@@ -1,5 +1,6 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 const { NotFound } = require('@feathersjs/errors');
+const { protect } = require('@feathersjs/authentication-local').hooks;
 
 const attachUserId = context => {
   context.data.userId = context.params.user.id;
@@ -28,9 +29,7 @@ module.exports = {
 
   after: {
     all: [
-      context => {
-        delete context.result.userId;
-      }
+      protect('userId')
     ],
     find: [],
     get: [],
