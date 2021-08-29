@@ -12,7 +12,10 @@ module.exports = function (app) {
     },
     done: {
       type: Sequelize.DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: false,
+      validate: {
+        isBoolean: true
+      }
     },
     title: {
       type: Sequelize.DataTypes.STRING,

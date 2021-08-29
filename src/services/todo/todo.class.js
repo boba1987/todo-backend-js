@@ -16,6 +16,6 @@ exports.Todo = class Todo extends Service {
       return data;
     }
 
-    return new NotFound('Not found');
+    return new NotFound(`No record found for id '${id}'`);
   }
 };
