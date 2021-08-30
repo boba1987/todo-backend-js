@@ -21,10 +21,10 @@ module.exports = function (app) {
       type: Sequelize.DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty(value) {
-          if (!value.trim()) throw new Error('title field is required');
+        notEmpty: {
+          msg: 'title field is required'
         }
-      }
+      },
     },
     description: {
       type: Sequelize.DataTypes.STRING,
